@@ -1,0 +1,4 @@
+library(searchConsoleR)
+library(googleAuthR)
+library(dplyr)
+library(magrittr)
