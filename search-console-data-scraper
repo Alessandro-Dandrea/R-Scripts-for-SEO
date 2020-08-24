@@ -1,4 +1,26 @@
+# Carico le librerie e accedo a GSC
 library(searchConsoleR)
-library(googleAuthR)
-library(dplyr)
 library(magrittr)
+library(dplyr)
+# Comando per accedere
+scr_auth()
+# Vedo i siti amministrati
+lista <- list_websites()
+lista
+# Imposto i dati
+sito <- ""
+inizio <- Sys.Date() - 93
+fine <- Sys.Date() - 3
+data <- c('date','query','page')
+fonte <- c("web")
+aggregazione <- c("byPage")
+stringhe = 100000
+data <- search_analytics(siteURL = sito, startDate = inizio, endDate = fine, dimensions = data, searchType = fonte, aggregationType = aggregazione, rowLimit = stringhe, prettyNames = TRUE)
+# Vedi il DB
+View(data)
+#Arrotondamento ultime due colonne
+rounded_df <- data %>%
+  mutate_if(is.numeric, round, 2)
+View(rounded_df)
+# Salva CSV
+write.csv(rounded_df, file='xxx.csv')
