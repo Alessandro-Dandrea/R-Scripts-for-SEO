@@ -1,26 +1,27 @@
-# Carico le librerie e accedo a GSC
+# Loading Libraries
 library(searchConsoleR)
 library(magrittr)
 library(dplyr)
-# Comando per accedere
+# The scr_auth() will authorize me to get data from GSC. It'll open a box for a login
 scr_auth()
-# Vedo i siti amministrati
-lista <- list_websites()
-lista
-# Imposto i dati
-sito <- ""
-inizio <- Sys.Date() - 93
-fine <- Sys.Date() - 3
+# Let see what site I can scrape
+list <- list_websites()
+list
+# Setting up the call to the GSC API
+website <- ""
+begin <- Sys.Date() - 93
+end <- Sys.Date() - 3
 data <- c('date','query','page')
-fonte <- c("web")
-aggregazione <- c("byPage")
-stringhe = 100000
-data <- search_analytics(siteURL = sito, startDate = inizio, endDate = fine, dimensions = data, searchType = fonte, aggregationType = aggregazione, rowLimit = stringhe, prettyNames = TRUE)
-# Vedi il DB
+type <- c("web")
+aggregation <- c("byPage")
+rows = 100000
+# This function will call the API and grab all the data. "Pretty Names" convert ISO Code to strings for an easy identification of all different countries
+data <- search_analytics(siteURL = website, startDate = begin, endDate = end, dimensions = data, searchType = type, aggregationType = aggregation, rowLimit = rows, prettyNames = TRUE)
+# View the DB
 View(data)
-#Arrotondamento ultime due colonne
+# Rounding to 0,00 CTR and Average Position
 rounded_df <- data %>%
   mutate_if(is.numeric, round, 2)
 View(rounded_df)
-# Salva CSV
+# Save the CSV
 write.csv(rounded_df, file='xxx.csv')
