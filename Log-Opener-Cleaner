@@ -1,1 +1,13 @@
-
+#Mounting libraries I need
+library(readr)
+#Open log file
+log <- read_log("C:/Users/Lenovo/Desktop/Log Analyzer/gipo-aprile-2020.log")
+View(log)
+#Setting up names for columns
+colnames(log)<- c('IP','Space','Space','Date-Time','Request','Status Code','Bytes','Referer','User Agent')
+head(log)
+# Remove ident. Two times because I have two 'Space' columns
+log$Space<-NULL
+log$Space<-NULL
+head(log)
+# Filtering Googlebot
