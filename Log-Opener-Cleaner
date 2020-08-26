@@ -2,14 +2,47 @@
 
 #Mounting libraries I need
 library(readr)
-#Open log file
+library(dplyr)
+#Open log file (using readr)
 log <- read_log("C:/Users/Lenovo/Desktop/Log Analyzer/gipo-aprile-2020.log")
 View(log)
 #Setting up names for columns
-colnames(log)<- c('IP','Space','Space','Date-Time','Request','Status Code','Bytes','Referer','User Agent')
+colnames(log)<- c('IP','Space','Space','Date_Time','Request','Status_Code','Bytes','Referer','User_Agent')
 head(log)
 # Remove ident. Two times because I have two 'Space' columns
 log$Space<-NULL
 log$Space<-NULL
 head(log)
-# Filtering Googlebot
+
+# Choose what bot you want to filter out (using dplyr)
+# Filtering Googlebot (SEO):
+
+# Filtering Google Ads Bot:
+AdsBot_log <- filter(log, User_Agent == 'AdsBot-Google (+http://www.google.com/adsbot.html)')
+View(AdsBot_log)
+
+# Filtering AdSense Bot:
+
+# Filtering AdSense Bot:
+
+# Filtering AdSense Bot:
+
+# Filtering Googlebot Image:
+GooglebotImage_log <- filter(log, User_Agent == 'Googlebot-Image/1.0')
+View(GooglebotImage_log)
+
+# Filtering Bingbot:
+BingBot_log <- filter(log, User_Agent == 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)')
+View(BingBot_log)
+
+# Filtering Facebook Bot:
+FacebookBot_log <- filter(log, User_Agent == 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)')
+View(FacebookBot_log)
+
+# Filtering Ahrefs Bot:
+AhrefsBot_log <- filter(log, User_Agent == 'Mozilla/5.0 (compatible; AhrefsBot/6.1; +http://ahrefs.com/robot/)')
+View(AhrefsBot_log)
+
+# Filtering Majestic SEO Bot:
+MajesticBot_log <- filter(log, User_Agent == 'Mozilla/5.0 (compatible; MJ12bot/v1.4.8; http://mj12bot.com/)')
+View(MajesticBot_log)
