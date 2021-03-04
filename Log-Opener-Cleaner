@@ -1,11 +1,13 @@
 --- IN PROGRESSSSSSSSSSSSSSS ---
 
-#Mounting libraries I need
-library(readr)
-library(dplyr)
-#Open log file (using readr)
-log <- read_log("C:/Users/Lenovo/Desktop/Log Analyzer/gipo-aprile-2020.log")
+## Entering the tidyverse...
+library(tidyverse)
+
+## Open log file
+## BTW, R has a nice ability to read even compressed files like Gzip files.
+log <- read_log("C:/Users/***.log")
 View(log)
+
 #Setting up names for columns
 colnames(log)<- c('IP','Space','Space','Date_Time','Request','Status_Code','Bytes','Referer','User_Agent')
 head(log)
