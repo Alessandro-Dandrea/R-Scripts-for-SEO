@@ -23,12 +23,6 @@ head(log)
 AdsBot_log <- filter(log, User_Agent == 'AdsBot-Google (+http://www.google.com/adsbot.html)')
 View(AdsBot_log)
 
-# Filtering AdSense Bot:
-
-# Filtering AdSense Bot:
-
-# Filtering AdSense Bot:
-
 # Filtering Googlebot Image:
 GooglebotImage_log <- filter(log, User_Agent == 'Googlebot-Image/1.0')
 View(GooglebotImage_log)
