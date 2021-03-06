@@ -1,19 +1,21 @@
 --- IN PROGRESSSSSSSSSSSSSSS ---
 
-## Entering the tidyverse...
+## Entering the tidyverse, as usual...
 library(tidyverse)
 
 ## Open log file
-## BTW, R has a nice ability to read even compressed files like Gzip files.
-log <- read_log("C:/Users/***.log")
-View(log)
+## BTW, R has a nice feature to read even compressed files like Gzip.
+## Remember to set the compressed format.
+## For merging together files in Win: https://superuser.com/questions/111825/a-command-line-or-batch-cmd-to-concatenate-multiple-files
+## Important: what up here won't work in PowerShell, only cmd.
+log <- read_log("C:/Users/***.gz")
+head(log)
 
 #Setting up names for columns
-colnames(log)<- c('IP','Space','Space','Date_Time','Request','Status_Code','Bytes','Referer','User_Agent')
+colnames(log)<- c('IP','Ident','Ident','Date_Time','Request','Status_Code','Bytes','Referer','User_Agent')
 head(log)
-# Remove ident. Two times because I have two 'Space' columns
-log$Space<-NULL
-log$Space<-NULL
+# Remove all you don't need like ident. Two times because I have two 'Space' columns
+log_ok <- select(c(-2,-3))
 head(log)
 
 # Choose what bot you want to filter out (using dplyr)
