@@ -1,0 +1,17 @@
+Remember to create a beginning script with at least 100 days before the treatment.
+
+Good article to pay attention to and follow step by step: https://arisc.medium.com/how-to-use-googles-causalimpact-ddaa2e770afd
+
+> library(CausalImpact)
+> df <- read.csv(file.choose())
+> variant_clicks <- ts(df$Variant)
+> control_clicks <- ts(df$Control)
+> data <- cbind(variant_clicks,control_clicks)
+> head(data)
+> pre.period <- c(1,100)
+> tail(data)
+> post.period <- c(101,132)
+> impact <- CausalImpact(data, pre.period, post.period)
+> plot(impact)
+> summary(impact)
+> summary(impact, "report")
